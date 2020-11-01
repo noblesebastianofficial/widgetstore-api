@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.widgetstore.controller.WidgetController;
-
+/**
+ * @author Noble Sebastian
+ * @version 1.0
+ */
 @SpringBootTest
 class WidgetStoreApplicationTests {
 	@Autowired

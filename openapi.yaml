@@ -5,7 +5,7 @@ servers:
     variables: {}
 info:
   version: a9daf1e5-c016-40e6-b9cb-a08166487905
-  title: Widjet
+  title: WIDGET
   description: ''
   termsOfService: ''
   contact: {}
@@ -14,8 +14,8 @@ info:
 paths:
   /api/widgets:
     post:
-      summary: CREATE WIDJET
-      operationId: CREATEWIDJET
+      summary: CREATE WIDGET
+      operationId: CREATEWIDGET
       parameters:
         - $ref: '#/components/parameters/Content-Type'
       responses:
@@ -36,21 +36,21 @@ paths:
                 height: 100
             example: ' { "xCoordinate":1, "yCoordinate":1, "zCoordinate":4, "width":205, "height":100 }'
       tags:
-        - WIDJETS API
+        - WIDGETS API
 
     get:
-      summary: GET ALL WIDJETS
-      operationId: GETALLWIDJETS
+      summary: GET ALL WIDGETS
+      operationId: GETALLWIDGETS
       parameters: []
       responses:
         '200':
           description: ''
           headers: {}
       tags:
-        - WIDJETS API
+        - WIDGETS API
     put:
-      summary: UPDATE WIDJET
-      operationId: UPDATEWIDJET
+      summary: UPDATE WIDGET
+      operationId: UPDATEWIDGET
       parameters:
         - name: Content-Type
           in: header
@@ -64,7 +64,7 @@ paths:
           description: ''
           headers: {}
       tags:
-        - WIDJETS API
+        - WIDGETS API
       requestBody:
         required: true
         content:
@@ -81,25 +81,25 @@ paths:
             example: '{ "id":2, "xCoordinate":2, "yCoordinate":1, "zCoordinate":5, "width":205, "height":100 }'
   /api/widgets/1:
     get:
-      summary: GET WIDJET BY ID
-      operationId: GETWIDJETBYID
+      summary: GET WIDGET BY ID
+      operationId: GETWIDGETBYID
       parameters: []
       responses:
         '200':
           description: ''
           headers: {}
       tags:
-        - WIDJETS API
+        - WIDGETS API
     delete:
-      summary: DELETE WIDJET
-      operationId: DELETEWIDJET
+      summary: DELETE WIDGET
+      operationId: DELETEWIDGET
       parameters: []
       responses:
         '200':
           description: ''
           headers: {}
       tags:
-        - WIDJETS API
+        - WIDGETS API
 components:
   parameters:
     Content-Type:
