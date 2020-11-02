@@ -86,7 +86,7 @@ docker container run  -p 8080:8080 -d --rm --name coffee-shop  widgetstore:lates
 
 ## Running the application with IDE
 
-There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `com.mycompany.coffee.CoffeeShopApplication` class from your IDE.
+There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `com.miro.widgetstore.Application` class from your IDE.
 
 * 	Download the zip or clone the Git repository.
 * 	Unzip the zip file (if you downloaded one)
@@ -121,7 +121,16 @@ There are several ways to run a Spring Boot application on your local machine. O
  - https://www.getpostman.com/collections/34564d25d1d36b92fcab
  
 ## SAMPLE API collection
- 
+   - CREATE WIDGET- POST http://localhost:8080/api/widgets
+   - Input-{ "xCoordinate":1, "yCoordinate":1, "zCoordinate":4, "width":209, "height":100 }
+   
+   - UPDATE WIDGET- UPDATE http://localhost:8080/api/widgets
+   - Input- { "id":2, "xCoordinate":2, "yCoordinate":1, "zCoordinate":4, "width":205, "height":100 }
+   - GET WIDGET ALL- GET http://localhost:8080/api/widgets?limit=10
+         
+   - GET WIDGET BY ID- GET http://localhost:8080/api/widgets/1
+   - DELETE WIDGET BY ID- DELETE http://localhost:8080/api/widgets/1
+        
 ## Test Coverage
   - 72 % Test coverage, it can be viewed  using Jacoco
 
