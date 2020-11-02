@@ -9,4 +9,4 @@ COPY ${DEPENDENCY}/lib /app/lib
 COPY ${DEPENDENCY}/resources /app
 COPY /target/classes /app
 
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.mycompany.coffee.CoffeeShopApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","Application"]

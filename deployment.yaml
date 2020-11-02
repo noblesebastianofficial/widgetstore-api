@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-widgetstore
+  namespace: widgetstore-ns
+spec:
+  selector:
+    app: widgetstore
+  ports:
+  - port: 8080
+    targetPort: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: widgetstore
+  namespace: widgetstore-ns
+  labels:
+    app: widgetstore
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: widgetstore
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 33%
+  template:
+    metadata:
+      labels:
+        name: widgetstore
+        app: widgetstore
+    spec:
+      containers:
+      - name: widgetstore
+        image: widgetstore:latest
+        imagePullPolicy: Always
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: production
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+        readinessProbe:
+          httpGet:
+            path: /application/health
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+          periodSeconds: 30
+          failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /application/health
+            port: 8080
+          initialDelaySeconds: 60
+          timeoutSeconds: 2
+          periodSeconds: 30
+          failureThreshold: 2
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: widgetstore
+  namespace: widgetstore-ns
+spec:
+  maxReplicas: 2
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: widgetstore
+  targetCPUUtilizationPercentage: 80
