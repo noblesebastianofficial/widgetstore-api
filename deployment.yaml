@@ -5,7 +5,7 @@ metadata:
   namespace: widgetstore-ns
 spec:
   selector:
-    app: widgetstore
+    app: widgetstore-api
   ports:
   - port: 8080
     targetPort: http
@@ -14,17 +14,17 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: widgetstore
+  name: widgetstore-api
   namespace: widgetstore-ns
   labels:
-    app: widgetstore
+    app: widgetstore-api
 spec:
   replicas: 1
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: widgetstore
+      app: widgetstore-api
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -33,11 +33,11 @@ spec:
   template:
     metadata:
       labels:
-        name: widgetstore
-        app: widgetstore
+        name: widgetstore-api
+        app: widgetstore-api
     spec:
       containers:
-      - name: widgetstore
+      - name: widgetstore-api
         image: widgetstore:latest
         imagePullPolicy: Always
         env:
@@ -70,7 +70,7 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: widgetstore
+  name: widgetstore-api
   namespace: widgetstore-ns
 spec:
   maxReplicas: 2
