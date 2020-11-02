@@ -17,6 +17,16 @@ spring:
   h2: 
     console: 
       enabled: true
+logging:
+  level:
+    root: WARN
+
+management:
+  endpoints:
+    web:
+      base-path: /application
+      exposure:
+        include: "health"
 
 ---
 
@@ -27,4 +37,15 @@ spring:
     username: user
     password: pwd
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    root: WARN
+
+management:
+  endpoints:
+    web:
+      base-path: /application
+      exposure:
+        include: "health"
 ---
